@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nuxt-link to="/new-transaction">New</nuxt-link>
+    <nuxt-link to="/transactions/1">New</nuxt-link>
   </div>
 </template>
 

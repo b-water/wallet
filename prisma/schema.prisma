@@ -14,7 +14,7 @@ model Transaction {
   id        Int      @id @default(autoincrement())
   type      Int
   name      String
-  value     Int
+  amount    Decimal
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
