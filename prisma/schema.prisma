@@ -10,30 +10,40 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Account {
-  id        Int      @id @default(autoincrement())
+model Currency {
+  id        Int       @id @default(autoincrement())
   name      String
+  Account   Account[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Account {
+  id           Int           @id @default(autoincrement())
+  name         String
+  currency     Currency      @relation(fields: [currencyId], references: [id])
+  currencyId   Int
   transactions Transaction[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
 }
 
 model Transaction {
-  id        Int      @id @default(autoincrement())
+  id        Int             @id @default(autoincrement())
   type      TransactionType @relation(fields: [typeId], references: [id])
-  typeId    Int
-  account   Account @relation(fields: [accountId], references: [id])
+  typeId    Int             @unique
+  account   Account         @relation(fields: [accountId], references: [id])
   accountId Int
   name      String
   amount    Decimal
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
 }
 
 model TransactionType {
-  id        Int      @id @default(autoincrement())
-  name      String
+  id          Int          @id @default(autoincrement())
+  name        String
   transaction Transaction?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 }

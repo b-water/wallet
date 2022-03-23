@@ -5,22 +5,25 @@
         id="input-name-group"
         label="Name:"
         label-for="input-name"
-        description="We'll never share your email with anyone else."
+        description="Choose something"
       >
         <b-form-input
           id="input-name"
           v-model="form.name"
-          type=""
-          placeholder="Enter name of Transaction"
+          placeholder="Enter name of the Account"
           required
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
+      <b-form-group
+        id="input-amount-group"
+        label="Amount:"
+        label-for="input-amount"
+      >
         <b-form-input
-          id="input-2"
-          v-model="form.name"
-          placeholder="Enter name"
+          id="input-amount"
+          v-model="form.amount"
+          placeholder="Enter amount"
           required
         ></b-form-input>
       </b-form-group>
@@ -56,7 +59,7 @@
 
 <script>
 export default {
-  name: "NewTransactionPage",
+  name: "NewEditAccountPage",
   data() {
     return {
       form: {

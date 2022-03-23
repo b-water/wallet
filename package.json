@@ -2,6 +2,9 @@
   "name": "wallet",
   "version": "1.0.0",
   "private": true,
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
