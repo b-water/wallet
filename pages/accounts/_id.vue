@@ -15,18 +15,7 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group
-        id="input-amount-group"
-        label="Amount:"
-        label-for="input-amount"
-      >
-        <b-form-input
-          id="input-amount"
-          v-model="form.amount"
-          placeholder="Enter amount"
-          required
-        ></b-form-input>
-      </b-form-group>
+      <currency-select></currency-select>
 
       <b-form-group id="input-group-3" label="Food:" label-for="input-3">
         <b-form-select
@@ -58,10 +47,15 @@
 </template>
 
 <script>
+import CurrencySelect from '../../components/CurrencySelect.vue';
 export default {
   name: "NewEditAccountPage",
+  components: {
+    CurrencySelect,
+  },
   data() {
     return {
+      type: '',
       form: {
         email: "",
         name: "",
@@ -77,6 +71,13 @@ export default {
       ],
       show: true,
     };
+  },
+  created() {
+    if (this.$route.params.id === '0') {
+      this.type = 'new';
+    } else {
+      this.type = 'edit';
+    }
   },
   methods: {
     onSubmit(event) {
