@@ -30,6 +30,12 @@ $ npx prisma migrate dev
 
 # Create new Migration
 $ prisma migrate dev --name migration_name
+
+# Seed Database with initial Data
+$ npx prisma db seed
+
+# Reset Database to Factory Setup
+$ npx prisma migrate reset
 ```
 
 For detailed explanation on how things work, check out the [documentation](https://www.prisma.io/docs/concepts/overview/what-is-prisma).
