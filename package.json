@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "prisma": {
-    "seed": "node prisma/seed.js"
+    "seed": "node -r esm prisma/seed.js"
   },
   "scripts": {
     "dev": "nuxt",
@@ -17,6 +17,7 @@
     "bootstrap": "^4.6.1",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.19.3",
+    "esm": "^3.2.25",
     "express": "^4.17.3",
     "nuxt": "^2.15.8",
     "vue": "^2.6.14",

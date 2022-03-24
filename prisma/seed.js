@@ -1,6 +1,6 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
-const { currencys } = require('./seeds/currencys')
+import currencys from './seeds/currencys'
 
 async function main() {
     currencys.forEach(async function (data) {
@@ -8,22 +8,6 @@ async function main() {
             data: data,
         });
     });
-    /** 
-    await prisma.currency.create({
-        data: currencys,
-    });*/
-    /** 
-    await prisma.currency.create({
-        data: {
-            name: 'EUR'
-        },
-    });
-    await prisma.currency.create({
-        data: {
-            name: 'USD'
-        },
-    });
-    */
 }
 
 main()
