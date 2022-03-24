@@ -39,4 +39,7 @@ CREATE TABLE "TransactionType" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Currency_iso_key" ON "Currency"("iso");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Transaction_typeId_key" ON "Transaction"("typeId");
