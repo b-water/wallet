@@ -11,14 +11,27 @@ export default {
     return {
       selected: null,
       currencys: [],
-      options: [
-        { value: null, text: "Please select a currency" },
-        { value: "a", text: "This is First option" },
-        { value: "b", text: "Selected Option" },
-        { value: { C: "3PO" }, text: "This is an option with object value" },
-        { value: "d", text: "This one is disabled", disabled: true },
-      ],
+      options: [{ value: null, text: "Please select a currency" }],
     };
   },
+  /** 
+  async asyncData() {
+    this.currencys = await this.$currencyRepository.index();
+  },*/
+  async fetch() {
+    this.currencys = await this.$currencyRepository.index();
+
+    if (this.currencys.length > 0) {
+      this.currencys.forEach((element) => {
+        const item = {
+          value: element.id,
+          text: element.name,
+        };
+        this.options.push(item);
+      });
+    }
+  },
+  created() {},
+  methods: {},
 };
 </script>

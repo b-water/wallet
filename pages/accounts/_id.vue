@@ -73,11 +73,12 @@ export default {
       currencys: [],
     };
   },
+  /** 
   async asyncData(ctx) {
     return {
       currencys: await ctx.app.$currencyRepository.index(),
     };
-  },
+  },*/
   created() {
     if (this.$route.params.id === "0") {
       this.type = "new";
@@ -87,10 +88,6 @@ export default {
     //this.getCurrencys();
   },
   methods: {
-    async getCurrencys() {
-      const test = await this.app.$currencyRepository.index();
-      console.log(test);
-    },
     onSubmit(event) {
       event.preventDefault();
       alert(JSON.stringify(this.form));
