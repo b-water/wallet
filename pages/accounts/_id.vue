@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import CurrencySelect from '../../components/CurrencySelect.vue';
+import CurrencySelect from "../../components/CurrencySelect.vue";
 export default {
   name: "NewEditAccountPage",
   components: {
@@ -55,7 +55,7 @@ export default {
   },
   data() {
     return {
-      type: '',
+      type: "",
       form: {
         email: "",
         name: "",
@@ -70,16 +70,27 @@ export default {
         "Corn",
       ],
       show: true,
+      currencys: [],
+    };
+  },
+  async asyncData(ctx) {
+    return {
+      currencys: await ctx.app.$currencyRepository.index(),
     };
   },
   created() {
-    if (this.$route.params.id === '0') {
-      this.type = 'new';
+    if (this.$route.params.id === "0") {
+      this.type = "new";
     } else {
-      this.type = 'edit';
+      this.type = "edit";
     }
+    //this.getCurrencys();
   },
   methods: {
+    async getCurrencys() {
+      const test = await this.app.$currencyRepository.index();
+      console.log(test);
+    },
     onSubmit(event) {
       event.preventDefault();
       alert(JSON.stringify(this.form));

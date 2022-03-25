@@ -10,6 +10,7 @@ export default {
   data() {
     return {
       selected: null,
+      currencys: [],
       options: [
         { value: null, text: "Please select a currency" },
         { value: "a", text: "This is First option" },
