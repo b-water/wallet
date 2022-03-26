@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+    <b-form @submit="onSubmit">
       <b-form-group
         id="input-name-group"
         label="Name:"
@@ -15,30 +15,16 @@
         ></b-form-input>
       </b-form-group>
 
-      <currency-select></currency-select>
-
-      <b-form-group id="input-group-3" label="Food:" label-for="input-3">
-        <b-form-select
-          id="input-3"
-          v-model="form.food"
-          :options="foods"
-          required
-        ></b-form-select>
+      <b-form-group>
+        <currency-select v-on:change="changeCurrency($event)"></currency-select>
       </b-form-group>
 
-      <b-form-group id="input-group-4" v-slot="{ ariaDescribedby }">
-        <b-form-checkbox-group
-          v-model="form.checked"
-          id="checkboxes-4"
-          :aria-describedby="ariaDescribedby"
-        >
-          <b-form-checkbox value="me">Check me out</b-form-checkbox>
-          <b-form-checkbox value="that">Check that out</b-form-checkbox>
-        </b-form-checkbox-group>
+      <b-form-group>
+        <b-button type="submit" variant="primary">
+          <span v-if="this.type === 'new'">Create</span>
+          <span v-else>Update</span>
+        </b-button>
       </b-form-group>
-
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
     </b-form>
     <b-card class="mt-3" header="Form Data Result">
       <pre class="m-0">{{ form }}</pre>
@@ -57,19 +43,9 @@ export default {
     return {
       type: "",
       form: {
-        email: "",
         name: "",
-        food: null,
-        checked: [],
+        currencyId: null,
       },
-      foods: [
-        { text: "Select One", value: null },
-        "Carrots",
-        "Beans",
-        "Tomatoes",
-        "Corn",
-      ],
-      show: true,
       currencys: [],
     };
   },
@@ -85,25 +61,16 @@ export default {
     } else {
       this.type = "edit";
     }
-    //this.getCurrencys();
   },
   methods: {
     onSubmit(event) {
       event.preventDefault();
       alert(JSON.stringify(this.form));
     },
-    onReset(event) {
-      event.preventDefault();
-      // Reset our form values
-      this.form.email = "";
-      this.form.name = "";
-      this.form.food = null;
-      this.form.checked = [];
-      // Trick to reset/clear native browser form validation state
-      this.show = false;
-      this.$nextTick(() => {
-        this.show = true;
-      });
+    changeCurrency(currencyId) {
+      if (currencyId > 0) {
+        this.form.currencyId = currencyId;
+      }
     },
   },
 };

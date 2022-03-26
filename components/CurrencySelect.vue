@@ -1,6 +1,10 @@
 <template>
   <div>
-    <b-form-select v-model="selected" :options="options"></b-form-select>
+    <b-form-select
+      v-model="selected"
+      :options="options"
+      @change="change($event)"
+    ></b-form-select>
   </div>
 </template>
 
@@ -14,10 +18,6 @@ export default {
       options: [{ value: null, text: "Please select a currency" }],
     };
   },
-  /** 
-  async asyncData() {
-    this.currencys = await this.$currencyRepository.index();
-  },*/
   async fetch() {
     this.currencys = await this.$currencyRepository.index();
 
@@ -32,6 +32,10 @@ export default {
     }
   },
   created() {},
-  methods: {},
+  methods: {
+    change(currencyId) {
+      this.$emit("change", currencyId);
+    },
+  },
 };
 </script>
