@@ -11,15 +11,20 @@
 <script>
 export default {
   name: "CurrencySelect",
+  props: {
+    selected: {
+      type: Number,
+      require: false,
+    },
+  },
   data() {
     return {
-      selected: null,
       currencys: [],
       options: [{ value: null, text: "Please select a currency" }],
     };
   },
   async fetch() {
-    this.currencys = await this.$currencyRepository.index();
+    this.currencys = await this.$repositories.currency.index();
 
     if (this.currencys.length > 0) {
       this.currencys.forEach((element) => {
@@ -34,6 +39,7 @@ export default {
   created() {},
   methods: {
     change(currencyId) {
+      this.selected = currencyId;
       this.$emit("change", currencyId);
     },
   },

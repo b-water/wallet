@@ -1,6 +1,7 @@
 <template>
   <div>
-    <b-form @submit="onSubmit">
+    <b-form @submit="save">
+      <b-alert variant="success" v-model="this.result.state">Account saved</b-alert>
       <b-form-group
         id="input-name-group"
         label="Name:"
@@ -16,7 +17,7 @@
       </b-form-group>
 
       <b-form-group>
-        <currency-select v-on:change="changeCurrency($event)"></currency-select>
+        <currency-select :selected="this.form.currencyId" v-on:change="changeCurrency($event)"></currency-select>
       </b-form-group>
 
       <b-form-group>
@@ -46,15 +47,17 @@ export default {
         name: "",
         currencyId: null,
       },
-      currencys: [],
+      result: {
+        state: null,
+        data: null
+      }
     };
   },
-  /** 
-  async asyncData(ctx) {
-    return {
-      currencys: await ctx.app.$currencyRepository.index(),
-    };
-  },*/
+  async fetch() {
+    if (this.type === 'edit') {
+      this.form = await this.$repositories.account.show(this.$route.params.id)
+    }
+  },
   created() {
     if (this.$route.params.id === "0") {
       this.type = "new";
@@ -63,9 +66,15 @@ export default {
     }
   },
   methods: {
-    onSubmit(event) {
+    async save(event) {
       event.preventDefault();
-      alert(JSON.stringify(this.form));
+      const result = await this.$repositories.account.create(this.form);
+      this.result.data = result;
+      console.log(result);
+      if (result.id > 0) {
+        this.result.state = true;
+        //this.$router.push('/accounts/' + result.id);
+      }
     },
     changeCurrency(currencyId) {
       if (currencyId > 0) {

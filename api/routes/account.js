@@ -10,7 +10,19 @@ router.get('/account', async (req, res) => {
 })
 
 router.get('/account/:id', async (req, res) => {
-    const result = await prisma.account.findFirst()
+    const result = await prisma.account.findUnique({
+        where: { id: parseInt(req.params.id) }
+    })
+    res.json(result)
+})
+
+router.post('/account', async (req, res) => {
+    const result = await prisma.account.create({
+        data: {
+            name: req.body.name,
+            currencyId: req.body.currencyId
+        },
+    })
     res.json(result)
 })
 
