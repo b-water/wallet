@@ -12,13 +12,14 @@
 export default {
   name: "CurrencySelect",
   props: {
-    selected: {
+    initalValue: {
       type: Number,
       require: false,
     },
   },
   data() {
     return {
+      selected: null,
       currencys: [],
       options: [{ value: null, text: "Please select a currency" }],
     };
@@ -36,7 +37,11 @@ export default {
       });
     }
   },
-  created() {},
+  created() {
+    if (this.initalValue > 0) {
+      this.selected = this.initalValue;
+    }
+  },
   methods: {
     change(currencyId) {
       this.selected = currencyId;
