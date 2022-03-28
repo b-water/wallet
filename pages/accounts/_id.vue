@@ -1,8 +1,11 @@
 <template>
   <b-row>
     <b-col class="mt-4">
+      <nuxt-link to="/accounts">
+        <b-button>Back</b-button>
+      </nuxt-link>
       <h5>Create new Account</h5>
-      <b-form @submit="save" class="mt-4">
+      <b-form @submit="save" class="mt-4 form" bg-variant="dark">
         <b-form-group
           id="input-name-group"
           label="Name:"
@@ -13,6 +16,9 @@
             id="input-name"
             v-model="form.name"
             placeholder="Enter name of the Account"
+            bg-variant="dark"
+            class="form-white"
+            :trim="true"
             required
           ></b-form-input>
         </b-form-group>
@@ -39,11 +45,13 @@
 </template>
 
 <script>
+import NuxtLogo from "~/components/NuxtLogo.vue";
 import CurrencySelect from "../../components/CurrencySelect.vue";
 export default {
   name: "NewEditAccountPage",
   components: {
     CurrencySelect,
+    NuxtLogo,
   },
   data() {
     return {
