@@ -45,13 +45,11 @@
 </template>
 
 <script>
-import NuxtLogo from "~/components/NuxtLogo.vue";
 import CurrencySelect from "../../components/CurrencySelect.vue";
 export default {
   name: "NewEditAccountPage",
   components: {
     CurrencySelect,
-    NuxtLogo,
   },
   data() {
     return {
