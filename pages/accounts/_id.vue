@@ -4,26 +4,29 @@
       <nuxt-link to="/accounts">
         <b-button>Back</b-button>
       </nuxt-link>
-      <h5>Create new Account</h5>
-      <b-form @submit="save" class="mt-4 form" bg-variant="dark">
+      <h5 class="text-secondary">Create new Account</h5>
+      <b-form @submit="save" class="mt-4 form">
         <b-form-group
           id="input-name-group"
           label="Name:"
           label-for="input-name"
-          description="Choose something"
+          description="A name is required a will be your primary Identifier for the account"
+          class="text-white"
         >
           <b-form-input
             id="input-name"
             v-model="form.name"
             placeholder="Enter name of the Account"
-            bg-variant="dark"
-            class="form-white"
             :trim="true"
             required
           ></b-form-input>
         </b-form-group>
 
-        <b-form-group>
+        <b-form-group
+          id="input-currency-group"
+          label="Currency:"
+          class="text-white"
+        >
           <currency-select
             :initalValue="this.form.currencyId"
             v-on:change="changeCurrency($event)"
