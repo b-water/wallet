@@ -1,8 +1,11 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12" class="mt-4">
-        <v-card v-for="account in this.accounts" :key="account.id">
+      <v-col cols="12" v-for="account in this.accounts" :key="account.id">
+        <v-card  
+          elevation="2"
+          shape
+        >
           <v-card-text>{{ account.name }}</v-card-text>
           <v-card-text>
             Some quick example text to build on the card title and make up the
@@ -23,6 +26,7 @@
 </template>
 
 <script>
+import _ from "lodash";
 export default {
   name: "AccountsPage",
   data() {
