@@ -1,50 +1,31 @@
 <template>
-  <b-row>
-    <b-col class="mt-4">
+  <v-row>
+    <v-col class="mt-4">
       <nuxt-link to="/accounts">
-        <b-button>Back</b-button>
+        <v-btn>Back</v-btn>
       </nuxt-link>
       <h5 class="text-secondary">Create new Account</h5>
-      <b-form @submit="save" class="mt-4 form">
-        <b-form-group
-          id="input-name-group"
-          label="Name:"
-          label-for="input-name"
-          description="A name is required a will be your primary Identifier for the account"
-          class="text-white"
-        >
-          <b-form-input
-            id="input-name"
-            v-model="form.name"
-            placeholder="Enter name of the Account"
-            :trim="true"
-            required
-          ></b-form-input>
-        </b-form-group>
+      <v-form @submit="save" class="mt-4 form">
+        <v-text-field
+          id="input-name"
+          v-model="form.name"
+          placeholder="Enter name of the Account"
+          :trim="true"
+          required
+        ></v-text-field>
 
-        <b-form-group
-          id="input-currency-group"
-          label="Currency:"
-          class="text-white"
-        >
-          <currency-select
-            :initalValue="this.form.currencyId"
-            v-on:change="changeCurrency($event)"
-          ></currency-select>
-        </b-form-group>
+        <currency-select
+          :initalValue="this.form.currencyId"
+          v-on:change="changeCurrency($event)"
+        ></currency-select>
 
-        <b-form-group>
-          <b-button type="submit" variant="primary">
-            <span v-if="this.type === 'new'">Create</span>
-            <span v-else>Update</span>
-          </b-button>
-        </b-form-group>
-      </b-form>
-      <b-card class="mt-3" header="Form Data Result">
-        <pre class="m-0">{{ form }}</pre>
-      </b-card>
-    </b-col>
-  </b-row>
+        <v-btn type="submit" variant="primary">
+          <span v-if="this.type === 'new'">Create</span>
+          <span v-else>Update</span>
+        </v-btn>
+      </v-form>
+    </v-col>
+  </v-row>
 </template>
 
 <script>

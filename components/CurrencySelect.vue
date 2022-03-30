@@ -1,10 +1,10 @@
 <template>
   <div>
-    <b-form-select
+    <v-select
       v-model="selected"
-      :options="options"
+      :items="options"
       @change="change($event)"
-    ></b-form-select>
+    ></v-select>
   </div>
 </template>
 
