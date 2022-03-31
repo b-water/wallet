@@ -7,21 +7,23 @@
         >
       </v-col>
       <v-col class="mt-4">
-        <h1>Create new Account</h1>
+        <h1 v-if="this.type === 'new'">Create new Account</h1>
+        <h1 v-else>Update Account</h1>
         <v-form @submit="save" class="mt-4 form">
-          <v-text-field
-            id="input-name"
-            v-model="form.name"
-            placeholder="Enter name of the Account"
-            :trim="true"
-            required
-          ></v-text-field>
+          <v-card class="pa-4 mb-4">
+            <v-text-field
+              id="input-name"
+              v-model="form.name"
+              placeholder="Enter name of the Account"
+              :trim="true"
+              required
+            ></v-text-field>
 
-          <currency-select
-            :initalValue="this.form.currencyId"
-            v-on:change="changeCurrency($event)"
-          ></currency-select>
-
+            <currency-select
+              :initalValue="this.form.currencyId"
+              v-on:change="changeCurrency($event)"
+            ></currency-select>
+          </v-card>
           <v-btn type="submit" variant="primary">
             <span v-if="this.type === 'new'">Create</span>
             <span v-else>Update</span>
