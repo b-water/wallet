@@ -93,7 +93,7 @@ export default {
       }
     },
     goBack() {
-      this.$router.push("/accounts");
+      this.$router.push("/");
     },
   },
 };
