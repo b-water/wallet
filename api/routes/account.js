@@ -20,6 +20,7 @@ router.post('/account', async (req, res) => {
     const result = await prisma.account.create({
         data: {
             name: req.body.name,
+            balance: 0,
             currencyId: req.body.currencyId
         },
     })

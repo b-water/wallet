@@ -48,5 +48,13 @@ export default {
       this.$emit("change", currencyId);
     },
   },
+  watch: {
+    initalValue: {
+      immediate: true,
+      handler(value) {
+        this.selected = value;
+      },
+    },
+  },
 };
 </script>
