@@ -35,15 +35,36 @@
               <v-icon left>mdi-pencil</v-icon>
               Edit
             </v-btn>
-            <v-btn
-              @click="goToDelete(account.id)"
-              color="error"
-              small
-              depressed
-            >
-              <v-icon left>mdi-delete</v-icon>
-              Delete
-            </v-btn>
+            <div class="ml-2">
+              <v-dialog v-model="showDeleteDialog" width="500">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn v-bind="attrs" v-on="on" color="error" small depressed>
+                    <v-icon left>mdi-delete</v-icon>
+                    Delete
+                  </v-btn>
+                </template>
+
+                <v-card>
+                  <v-card-title>Delete Account</v-card-title>
+                  <v-card-text
+                    >This will erase any data associated to this
+                    account</v-card-text
+                  >
+
+                  <v-divider></v-divider>
+
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="blue" text @click="showDeleteDialog = false">
+                      Close
+                    </v-btn>
+                    <v-btn color="error" text @click="showDeleteDialog = false">
+                      Delete
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+            </div>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -66,6 +87,7 @@ export default {
   data() {
     return {
       accounts: [],
+      showDeleteDialog: false,
     };
   },
   computed: {},
