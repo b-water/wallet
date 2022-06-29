@@ -22,16 +22,7 @@
             bulk of the card's content.
           </v-card-text>
           <v-card-actions class="mt-2 ml-2 pb-4">
-            <v-btn color="teal" @click="goToImport(account.id)" small depressed>
-              <v-icon left> mdi-application-import</v-icon>
-              Import</v-btn
-            >
-            <v-btn
-              color="secondary"
-              @click="goToEdit(account.id)"
-              small
-              depressed
-            >
+            <v-btn color="secondary" @click="goToEdit(account.id)" small depressed>
               <v-icon left>mdi-pencil</v-icon>
               Edit
             </v-btn>
@@ -46,10 +37,8 @@
 
                 <v-card>
                   <v-card-title>Delete Account</v-card-title>
-                  <v-card-text
-                    >This will erase any data associated to this
-                    account</v-card-text
-                  >
+                  <v-card-text>This will erase any data associated to this
+                    account</v-card-text>
 
                   <v-divider></v-divider>
 
@@ -74,6 +63,10 @@
         <v-btn color="indigo" @click="goToCreate()">
           <v-icon left>mdi-folder-plus</v-icon>
           Create
+        </v-btn>
+        <v-btn color="teal" @click="goToImport()">
+          <v-icon left> mdi-application-import</v-icon>
+          Import
         </v-btn>
       </v-col>
     </v-row>
